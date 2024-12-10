@@ -1,5 +1,5 @@
-import { Button, Form, Input, Divider } from "antd";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Button, Form, Input, Divider, message } from "antd";
 import type { FormProps } from "antd";
 import {
   UserOutlined,
@@ -12,20 +12,32 @@ import {
 import { motion } from "motion/react";
 import { LoginStateContext, formTypeEnum } from "./providers/LoginProvider";
 import { useNavigate } from "react-router";
+import { UserApi, login } from "@/api/systerm/userService";
 
 type FieldType = {
-  username?: string;
-  password?: string;
-  code?: string;
+  username: string;
+  password: string;
+  captcha: string;
 };
 
 const LoginForm = () => {
-  const { setFormType } = useContext(LoginStateContext);
   const navigate = useNavigate();
+  const { setFormType } = useContext(LoginStateContext);
+  const [captchaImageSrc, setCaptchaImageSrc] = useState<string>(
+    UserApi.CaptchaImage
+  );
 
-  const handleLogin: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
-    navigate('/home')
+  const handleLogin: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      const res = await login(values);
+      console.log(res);
+      message.success("登录成功");
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -60,7 +72,7 @@ const LoginForm = () => {
 
         <Form.Item
           label={null}
-          name="code"
+          name="captcha"
           rules={[{ required: true, message: "请输入验证码" }]}
         >
           <div className="flex h-full gap-2">
@@ -69,7 +81,14 @@ const LoginForm = () => {
               className="flex-1"
               prefix={<SafetyOutlined />}
             />
-            <Button style={{ width: 80 }}>3412</Button>
+            <img
+              src={captchaImageSrc}
+              alt="验证码"
+              className="w-20 cursor-pointer"
+              onClick={() =>
+                setCaptchaImageSrc(`${UserApi.CaptchaImage}?time=${Date.now()}`)
+              }
+            />
           </div>
         </Form.Item>
 
