@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 背景颜色 */
+  --body-bg-color: #f9fafb;
+  /* 主要颜色：f4a261 787ff6 */
+  --primary-color: #f4a261;
+}
