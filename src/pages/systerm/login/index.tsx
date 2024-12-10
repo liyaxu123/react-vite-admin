@@ -13,11 +13,11 @@ const Login = () => {
   const { formType } = useContext(LoginStateContext);
 
   return (
-    <MotionContainer className="w-screen h-screen bg-gray-200 flex flex-col items-center justify-center">
+    <MotionContainer className="flex flex-col items-center justify-center w-screen h-screen bg-white lg:bg-gray-200">
       <AnimatePresence mode="wait">
-          {formType === formTypeEnum.login ? "登录" : "注册"}
-          {formType === formTypeEnum.login && <LoginForm />}
-          {formType === formTypeEnum.register && <RegisterForm />}
+        {formType === formTypeEnum.login ? "登录" : "注册"}
+        {formType === formTypeEnum.login && <LoginForm />}
+        {formType === formTypeEnum.register && <RegisterForm />}
       </AnimatePresence>
     </MotionContainer>
   );

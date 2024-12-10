@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import { motion } from "motion/react";
 import { LoginStateContext, formTypeEnum } from "./providers/LoginProvider";
+import { useNavigate } from "react-router";
 
 type FieldType = {
   username?: string;
@@ -20,8 +21,11 @@ type FieldType = {
 
 const LoginForm = () => {
   const { setFormType } = useContext(LoginStateContext);
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
+  const navigate = useNavigate();
+
+  const handleLogin: FormProps<FieldType>["onFinish"] = (values) => {
     console.log("Success:", values);
+    navigate('/home')
   };
 
   return (
@@ -32,13 +36,13 @@ const LoginForm = () => {
       transition={{
         duration: 0.4,
       }}
-      className="w-[420px] h-[534px] py-10 px-5 bg-[#F9FAFB] rounded-2xl"
+      className="w-[100%] lg:w-[420px] h-[560px] lg:h-[534px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl"
     >
       <div className="flex flex-col items-center gap-3 mb-10">
-        <h5 className="text-xl font-bold">登录</h5>
+        <h5 className="font-sans text-xl font-bold font-notoSansSC">登录</h5>
       </div>
 
-      <Form size="large" onFinish={onFinish} autoComplete="off">
+      <Form size="large" onFinish={handleLogin} autoComplete="off">
         <Form.Item<FieldType>
           name="username"
           rules={[{ required: true, message: "请输入用户名" }]}

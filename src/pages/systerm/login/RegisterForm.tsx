@@ -32,7 +32,7 @@ const RegisterForm = () => {
       transition={{
         duration: 0.4,
       }}
-      className="w-[420px] h-[534px] py-10 px-5 bg-[#F9FAFB] rounded-2xl"
+      className="w-[100%] lg:w-[420px] h-[560px] lg:h-[534px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl"
     >
       <div className="flex flex-col items-center gap-3 mb-10">
         <h5 className="text-xl font-bold">注册</h5>
