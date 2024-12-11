@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Button, Form, Input, Divider, message } from "antd";
+import { Button, Form, Input, Divider } from "antd";
 import type { FormProps } from "antd";
 import {
   UserOutlined,
@@ -13,6 +13,7 @@ import { motion } from "motion/react";
 import { LoginStateContext, formTypeEnum } from "./providers/LoginProvider";
 import { useNavigate } from "react-router";
 import { UserApi, login } from "@/api/systerm/userService";
+import { toast } from "sonner";
 
 type FieldType = {
   username: string;
@@ -31,7 +32,9 @@ const LoginForm = () => {
     try {
       const res = await login(values);
       console.log(res);
-      message.success("登录成功");
+      toast.success("登录成功", {
+        position: "top-center",
+      });
       setTimeout(() => {
         navigate("/home");
       }, 1000);
@@ -109,7 +112,43 @@ const LoginForm = () => {
                 立即注册
               </a>
             </p>
-            <a className="hover:underline underline-offset-4">忘记密码?</a>
+            <a
+              className="hover:underline underline-offset-4"
+              onClick={() => {
+                toast.success("登录成功", {
+                  duration: Infinity,
+                });
+                toast.info("登录成功", {
+                  duration: Infinity,
+                });
+                toast.error("登录成功", {
+                  duration: Infinity,
+                });
+                toast.warning("登录成功", {
+                  duration: Infinity,
+                });
+                // const toastId = toast.loading("登录成功");
+
+                // toast.promise(myPromise, {
+                //   loading: "Loading...",
+                //   success: (data) => {
+                //     return `${data.name} toast has been added`;
+                //   },
+                //   error: "Error",
+                // });
+
+                setTimeout(() => {
+                  // 关闭所有通知。
+                  toast.dismiss();
+                  // 关闭对应的 loading 通知
+                  // toast.dismiss(toastId);
+                  // 替换 Loading 通知
+                  // toast.success("Data loaded successfully!", { id: toastId });
+                }, 3000);
+              }}
+            >
+              忘记密码?
+            </a>
           </div>
         </Form.Item>
 

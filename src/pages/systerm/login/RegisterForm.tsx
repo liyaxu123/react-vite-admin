@@ -85,6 +85,16 @@ const RegisterForm = () => {
         <Form.Item label={null}>
           <div className="flex flex-col items-center justify-center gap-4 text-sm text-[#1877F2]">
             <p className="text-[#637381]">
+              已有账号
+              <a
+                className="mx-1 leading-[22px] text-[#1877F2] underline hover:underline underline-offset-4 cursor-pointer"
+                onClick={() => setFormType(formTypeEnum.login)}
+              >
+                去登录
+              </a>
+            </p>
+
+            <p className="text-[#637381]">
               注册即表示同意
               <a className="mx-1 leading-[22px] text-[#1877F2] underline hover:underline underline-offset-4">
                 服务条款
@@ -92,16 +102,6 @@ const RegisterForm = () => {
               &
               <a className="mx-1 leading-[22px] text-[#1877F2] underline hover:underline underline-offset-4">
                 隐私政策
-              </a>
-            </p>
-
-            <p className="text-[#637381]">
-              已有账号
-              <a
-                className="mx-1 leading-[22px] text-[#1877F2] underline hover:underline underline-offset-4 cursor-pointer"
-                onClick={() => setFormType(formTypeEnum.login)}
-              >
-                去登录
               </a>
             </p>
           </div>
