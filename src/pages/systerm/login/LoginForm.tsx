@@ -14,6 +14,9 @@ import { LoginStateContext, formTypeEnum } from "./providers/LoginProvider";
 import { useNavigate } from "react-router";
 import { UserApi, login } from "@/api/systerm/userService";
 import { toast } from "sonner";
+import { useUserActions } from "@/store/userStore";
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 type FieldType = {
   username: string;
@@ -23,6 +26,7 @@ type FieldType = {
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { setUserToken, setUserInfo } = useUserActions();
   const { setFormType } = useContext(LoginStateContext);
   const [captchaImageSrc, setCaptchaImageSrc] = useState<string>(
     UserApi.CaptchaImage
@@ -30,16 +34,13 @@ const LoginForm = () => {
 
   const handleLogin: FormProps<FieldType>["onFinish"] = async (values) => {
     try {
-      const res = await login(values);
-      console.log(res);
-      toast.success("登录成功", {
-        position: "top-center",
-      });
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
-    } catch (error) {
-      console.log(error);
+      const { accessToken, refreshToken, userInfo } = await login(values);
+      setUserToken({ accessToken, refreshToken });
+      setUserInfo(userInfo);
+      navigate(HOMEPAGE, { replace: true });
+      toast.success("登录成功");
+    } catch (err: any) {
+      toast.error(err.message);
     }
   };
 

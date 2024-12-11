@@ -13,10 +13,10 @@ function App() {
         components: {},
       }}
     >
-      <AntdApp>
+      <AntdApp className="h-screen">
         {/* 一个好看的提示组件：https://sonner.emilkowal.ski/ */}
-        <Toast />
         <Router />
+        <Toast />
       </AntdApp>
     </ConfigProvider>
   );

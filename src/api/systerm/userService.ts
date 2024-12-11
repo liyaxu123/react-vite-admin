@@ -12,7 +12,7 @@ export interface RegisterReq extends LoginReq {
   email: string;
 }
 
-export type LoginRes = UserToken & { user: UserInfo };
+export type LoginRes = UserToken & { userInfo: UserInfo };
 
 export enum UserApi {
   Login = "/user/login",

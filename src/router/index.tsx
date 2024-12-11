@@ -4,9 +4,6 @@ import DashboardLayout from "@/layouts/dashboard";
 import { ErrorRoutes } from "./routes/error-routes";
 import AuthGuard from "./components/auth-guard";
 
-import Home from "@/pages/Home";
-import About from "@/pages/About";
-
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 const LoginRoute = {
@@ -24,11 +21,11 @@ export default function Router() {
   const permissionRoutes = [
     {
       path: "home",
-      Component: Home,
+      Component: lazy(() => import("@/pages/Home")),
     },
     {
       path: "about",
-      Component: About,
+      Component: lazy(() => import("@/pages/About")),
     },
   ];
 

@@ -1,13 +1,19 @@
 import React, { Suspense } from "react";
 import { Layout } from "antd";
-import { CircleLoading } from "../../components/loading";
+import { CircleLoading } from "@/components/loading";
 import Nav from "./nav";
 import Header from "./header";
 import Main from "./main";
 
 const DashboardLayout: React.FC = () => {
   return (
-    <Suspense fallback={<CircleLoading />}>
+    <Suspense
+      fallback={
+        <div className="h-screen">
+          <CircleLoading />
+        </div>
+      }
+    >
       <Layout className="h-full">
         <Nav />
         <Layout className="bg-[var(--body-bg-color)] overflow-y-auto">
