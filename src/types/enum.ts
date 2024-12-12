@@ -4,7 +4,7 @@ export enum BasicStatus {
 }
 
 export enum ResultEnum {
-  SUCCESS = 201,
+  SUCCESS = 0,
   ERROR = -1,
   TIMEOUT = 401,
 }

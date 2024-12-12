@@ -7,21 +7,21 @@ import Main from "./main";
 
 const DashboardLayout: React.FC = () => {
   return (
-    <Suspense
-      fallback={
-        <div className="h-screen">
-          <CircleLoading />
-        </div>
-      }
-    >
-      <Layout className="h-full">
+    <Layout className="h-screen overflow-hidde">
+      <Suspense
+        fallback={
+          <div className="h-screen">
+            <CircleLoading />
+          </div>
+        }
+      >
         <Nav />
         <Layout className="bg-[var(--body-bg-color)] overflow-y-auto">
           <Header />
           <Main />
         </Layout>
-      </Layout>
-    </Suspense>
+      </Suspense>
+    </Layout>
   );
 };
 

@@ -5,7 +5,6 @@ import axios, {
 } from "axios";
 import type { Result } from "@/types/api";
 import { ResultEnum } from "@/types/enum";
-import { message } from "antd";
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
@@ -44,16 +43,13 @@ axiosInstance.interceptors.response.use(
     throw new Error(message || "请求出错了");
   },
   (error: AxiosError<Result>) => {
-    const { response, message: msg } = error || {};
-
+    const { response, message: msg } = error;
     const errMsg = response?.data?.data || msg || "操作失败,系统异常!";
-    message.error(errMsg);
-
     const status = response?.status;
     if (status === 401) {
       // userStore.getState().actions.clearUserInfoAndToken();
     }
-    return Promise.reject(error);
+    return Promise.reject(errMsg);
   }
 );
 

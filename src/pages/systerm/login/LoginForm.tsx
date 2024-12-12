@@ -40,7 +40,7 @@ const LoginForm = () => {
       navigate(HOMEPAGE, { replace: true });
       toast.success("登录成功");
     } catch (err: any) {
-      toast.error(err.message);
+      toast.error(err);
     }
   };
 

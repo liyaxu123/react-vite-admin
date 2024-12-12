@@ -1,27 +1,56 @@
-import { useContext } from "react";
-import { Button, Form, Input } from "antd";
-import type { FormProps } from "antd";
+import { useContext, useState } from "react";
+import { Button, Form, Input, Statistic } from "antd";
+import type { FormProps, CountdownProps } from "antd";
 import {
   UserOutlined,
   LockOutlined,
   SafetyOutlined,
   MailOutlined,
+  TagOutlined,
 } from "@ant-design/icons";
 import { motion } from "motion/react";
 import { LoginStateContext, formTypeEnum } from "./providers/LoginProvider";
+import { getRegisterCaptcha, register } from "@/api/systerm/userService";
+import { toast } from "sonner";
 
 type FieldType = {
-  username?: string;
-  email?: string;
-  password?: string;
-  code?: string;
+  username: string;
+  password: string;
+  nickName: string;
+  email: string;
+  captcha: string;
 };
 
+const { Countdown } = Statistic;
+
 const RegisterForm = () => {
+  const [form] = Form.useForm();
+  const [getEmailCaptchaDisabled, setGetEmailCaptchaDisabled] = useState(false);
   const { setFormType } = useContext(LoginStateContext);
 
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
+  const onCountdownFinished: CountdownProps["onFinish"] = () => {
+    setGetEmailCaptchaDisabled(false);
+  };
+
+  const getEmailCaptcha = async () => {
+    try {
+      const { email } = await form.validateFields(["email"]);
+      setGetEmailCaptchaDisabled(true);
+      const res = await getRegisterCaptcha(email);
+      toast.success(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit: FormProps<FieldType>["onFinish"] = async (values) => {
+    try {
+      await register(values);
+      toast.success("注册成功，请登录");
+      setFormType(formTypeEnum.login);
+    } catch (err: any) {
+      toast.error(err);
+    }
   };
 
   return (
@@ -38,19 +67,12 @@ const RegisterForm = () => {
         <h5 className="text-xl font-bold">注册</h5>
       </div>
 
-      <Form size="large" onFinish={onFinish} autoComplete="off">
+      <Form form={form} size="large" onFinish={handleSubmit} autoComplete="off">
         <Form.Item<FieldType>
           name="username"
           rules={[{ required: true, message: "请输入用户名" }]}
         >
           <Input placeholder="请输入用户名" prefix={<UserOutlined />} />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          name="email"
-          rules={[{ required: true, message: "请输入邮箱" }]}
-        >
-          <Input placeholder="请输入邮箱" prefix={<MailOutlined />} />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -61,9 +83,27 @@ const RegisterForm = () => {
           <Input.Password placeholder="请输入密码" prefix={<LockOutlined />} />
         </Form.Item>
 
+        <Form.Item<FieldType>
+          label=""
+          name="nickName"
+          rules={[{ required: true, message: "请输入昵称" }]}
+        >
+          <Input placeholder="请输入昵称" prefix={<TagOutlined />} />
+        </Form.Item>
+
+        <Form.Item<FieldType>
+          name="email"
+          rules={[
+            { required: true, message: "请输入邮箱" },
+            { type: "email", message: "请输入正确的邮箱" },
+          ]}
+        >
+          <Input placeholder="请输入邮箱" prefix={<MailOutlined />} />
+        </Form.Item>
+
         <Form.Item
           label={null}
-          name="code"
+          name="captcha"
           rules={[{ required: true, message: "请输入验证码" }]}
         >
           <div className="flex h-full gap-2">
@@ -72,7 +112,23 @@ const RegisterForm = () => {
               className="flex-1"
               prefix={<SafetyOutlined />}
             />
-            <Button style={{ width: 80 }}>3412</Button>
+            <Button
+              disabled={getEmailCaptchaDisabled}
+              style={{ width: 110 }}
+              onClick={getEmailCaptcha}
+            >
+              {getEmailCaptchaDisabled ? (
+                <Countdown
+                  value={Date.now() + 60 * 1000}
+                  format="ss"
+                  suffix="秒后再获取"
+                  valueStyle={{ fontSize: 14 }}
+                  onFinish={onCountdownFinished}
+                />
+              ) : (
+                <>获取验证码</>
+              )}
+            </Button>
           </div>
         </Form.Item>
 

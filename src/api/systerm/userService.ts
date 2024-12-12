@@ -32,8 +32,8 @@ export const register = (data: RegisterReq) =>
 export const getRefreshToken = (params: string) =>
   http.get({ url: UserApi.Refresh, params });
 
-export const getRegisterCaptcha = () =>
-  http.get({ url: UserApi.RegisterCaptcha });
+export const getRegisterCaptcha = (email: string) =>
+  http.get({ url: `${UserApi.RegisterCaptcha}?address=${email}` });
 
 export const getCaptchaImage = () => http.get({ url: UserApi.CaptchaImage });
 
