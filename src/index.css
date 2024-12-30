@@ -43,3 +43,14 @@
   background-color: rgba(145, 158, 171, 0.08);
 }
 /* ========================== Dropdown 自定义样式 ============================================= */
+
+/* ========================== account Drawer 自定义样式 ======================================= */
+.ant-drawer .lyx-account-drawer-body {
+  padding: 0px;
+  background-image: url("./assets/images/bg-left-top.svg"),
+    url("./assets/images/bg-right-bottom.svg");
+  background-size: 50%, 50%;
+  background-position: right top, left bottom;
+  background-repeat: no-repeat;
+}
+/* ========================== account Drawer 自定义样式 ======================================= */
