@@ -8,3 +8,38 @@
   /* 主要颜色：f4a261 787ff6 */
   --primary-color: #f4a261;
 }
+
+/* ========================== Dropdown 自定义样式 ============================================= */
+.lyx-dropdown .ant-dropdown-menu {
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("./assets/images/bg-left-top.svg"),
+    url("./assets/images/bg-right-bottom.svg");
+  background-size: 50%, 50%;
+  background-position: right top, left bottom;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 2px 0 rgba(145 158 171 / 0.24),
+    -20px 20px 40px -4px rgba(145 158 171 / 0.24);
+}
+
+.lyx-dropdown .ant-dropdown-menu .ant-dropdown-menu-item {
+  box-sizing: content-box;
+  margin-bottom: 4px;
+  height: 36px;
+  padding: 6px 8px;
+}
+
+.lyx-dropdown .ant-dropdown-menu .ant-dropdown-menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.lyx-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected {
+  color: inherit;
+  background-color: rgba(145, 158, 171, 0.16);
+  font-weight: 600;
+}
+
+.lyx-dropdown .ant-dropdown-menu .ant-dropdown-menu-item-selected:hover {
+  background-color: rgba(145, 158, 171, 0.08);
+}
+/* ========================== Dropdown 自定义样式 ============================================= */
