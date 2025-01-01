@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Layout, Menu, Button, theme, ConfigProvider } from "antd";
 import SimpleBar from "simplebar-react";
 import { Iconify } from "@/components/icon";
+import MotionContainer from "@/components/animate/motion-container";
+import { getVariant, AnimateEnum } from "@/components/animate/variants";
+import { motion } from "motion/react";
 
 const { Sider } = Layout;
 
@@ -148,12 +151,17 @@ const Nav = () => {
       <div className="h-[72px] flex gap-2 items-center justify-center">
         <Iconify icon="solar:code-bold" size={46} color={token.colorPrimary} />
         {collapsed ? null : (
-          <h1
-            className="text-2xl font-bold"
-            style={{ color: token.colorPrimary }}
-          >
-            React Admin
-          </h1>
+          <MotionContainer className="flex text-2xl font-bold">
+            {"React Admin".split("").map((letter) => (
+              <motion.div
+                key={letter}
+                variants={getVariant(AnimateEnum.fadeIn)}
+                style={{ color: token.colorPrimary, minWidth: 8 }}
+              >
+                {letter}
+              </motion.div>
+            ))}
+          </MotionContainer>
         )}
       </div>
 
@@ -164,7 +172,11 @@ const Nav = () => {
         className="absolute -translate-x-1/2 -translate-y-1/2 top-9 left-full z-[100]"
         icon={
           <Iconify
-            icon={collapsed ? 'solar:alt-arrow-right-line-duotone' : 'solar:alt-arrow-left-line-duotone'}
+            icon={
+              collapsed
+                ? "solar:alt-arrow-right-line-duotone"
+                : "solar:alt-arrow-left-line-duotone"
+            }
             size={16}
             color="rgb(99, 115, 129)"
             className="transition-all hover:scale-110"
