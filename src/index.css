@@ -9,6 +9,11 @@
   --primary-color: #f4a261;
 }
 
+/* 更改滚动条的颜色 */
+.simplebar-scrollbar::before {
+  background-color: #c1c1c1;
+}
+
 /* ========================== Dropdown 自定义样式 ============================================= */
 .lyx-dropdown .ant-dropdown-menu {
   backdrop-filter: blur(20px);
@@ -54,3 +59,34 @@
   background-repeat: no-repeat;
 }
 /* ========================== account Drawer 自定义样式 ======================================= */
+
+/* ========================== Popover 自定义样式 ======================================= */
+.lyx-popover {
+  padding: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
+  background-image: url("./assets/images/bg-left-top.svg"),
+    url("./assets/images/bg-right-bottom.svg");
+  background-size: 50%, 50%;
+  background-position: right top, left bottom;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+.lyx-popover .ant-popover-arrow::before {
+  background-color: #fff;
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 184, 217, 0.1),
+    rgba(0, 184, 217, 0.1)
+  );
+}
+
+.lyx-popover .ant-popover-content .ant-popover-inner {
+  background-color: transparent;
+  padding: 0;
+}
+
+.lyx-popover .ant-popover-content .ant-popover-inner .ant-popover-title {
+  margin-bottom: 0;
+}
+/* ========================== Popover 自定义样式 ======================================= */

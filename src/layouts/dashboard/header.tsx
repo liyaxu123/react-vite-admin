@@ -6,6 +6,7 @@ import AccountDropdown from "@/layouts/_common/account-dropdown";
 import NoticeButton from "@/layouts/_common/notice";
 import SearchButton from "@/layouts/_common/search-button";
 import TeamSwitch from "@/layouts/_common/team-switch";
+import ContactsButton from "@/layouts/_common/contacts-button";
 
 const Header = () => {
   return (
@@ -24,6 +25,7 @@ const Header = () => {
           />
         </IconButton>
         <NoticeButton />
+        <ContactsButton />
         <SettingButton />
         <AccountDropdown />
       </div>
