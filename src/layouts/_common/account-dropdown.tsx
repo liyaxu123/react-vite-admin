@@ -1,14 +1,7 @@
 import { useState } from "react";
-import {
-  Button,
-  Menu,
-  Tooltip,
-  Drawer,
-  Avatar,
-  theme,
-  type MenuProps,
-} from "antd";
+import { Button, Menu, Tooltip, Drawer, Avatar, type MenuProps } from "antd";
 import { NavLink } from "react-router";
+import { motion } from "motion/react";
 import { useRouter } from "@/router/hooks";
 import { useUserActions, useUserInfo } from "@/store/userStore";
 import { IconButton, Iconify } from "@/components/icon";
@@ -21,8 +14,6 @@ import huojian from "@/assets/images/huojian.webp";
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
 const AccountDropdown = () => {
-  const { token } = theme.useToken();
-  const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = token;
   const { replace } = useRouter();
   const { username, email, avatar } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
@@ -66,7 +57,7 @@ const AccountDropdown = () => {
               size={24}
               color="rgb(99, 115, 129)"
             />
-            仪表盘
+            首页
           </div>
         </NavLink>
       ),
@@ -98,27 +89,11 @@ const AccountDropdown = () => {
       label: (
         <div className="flex items-center gap-4">
           <Iconify
-            icon="solar:crown-line-bold"
-            size={24}
-            color="rgb(99, 115, 129)"
-          />
-          订阅
-        </div>
-      ),
-      key: "3",
-      onClick: () => {
-        setOpen(false);
-      },
-    },
-    {
-      label: (
-        <div className="flex items-center gap-4">
-          <Iconify
             icon="solar:shield-keyhole-bold-duotone"
             size={24}
             color="rgb(99, 115, 129)"
           />
-          安全
+          锁屏
         </div>
       ),
       key: "4",
@@ -176,7 +151,10 @@ const AccountDropdown = () => {
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="mb-4">
+          <div
+            className="p-1 mb-4 overflow-hidden rounded-full"
+            style={{ boxShadow: "0px 2px 4px 0px rgba(0, 0, 0, 0.1)" }}
+          >
             <Avatar
               size={84}
               src={<img src={avatar || defaultAvatar} alt="头像" />}
@@ -228,13 +206,21 @@ const AccountDropdown = () => {
                 升级至专业版
               </Button>
             </div>
-            <div>
+            <motion.div
+              animate={{ y: [0, 10, 0, -10, 0] }}
+              transition={{
+                duration: 5,
+                ease: "linear",
+                times: [0, 0.25, 0.5, 0.75, 1],
+                repeat: Infinity,
+              }}
+            >
               <img
                 src={huojian}
                 alt="小火箭"
                 style={{ width: 112, height: 112 }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -248,6 +234,7 @@ const AccountDropdown = () => {
               color: "rgb(183, 29, 24)",
               fontWeight: 700,
             }}
+            onClick={logout}
           >
             退出登录
           </Button>
