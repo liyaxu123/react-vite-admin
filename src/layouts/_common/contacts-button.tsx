@@ -156,7 +156,6 @@ const ContactsButton = () => {
     <SimpleBar className="h-[320px]">
       <ConfigProvider
         theme={{
-          token: {},
           components: {
             Menu: {
               itemHeight: 56,
