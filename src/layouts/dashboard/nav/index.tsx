@@ -44,6 +44,7 @@ const items = [
       {
         key: "2-1",
         label: "用户",
+        type: 'group',
         children: [
           {
             key: "2-1-1",
@@ -58,6 +59,7 @@ const items = [
       {
         key: "2-2",
         label: "系统",
+        type: 'group',
         children: [
           {
             key: "2-2-1",

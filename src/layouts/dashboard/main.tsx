@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 
 const Main = () => {
   return (
-    <div className="px-10 pt-2 pb-16">
+    <div className="w-full h-full">
       <Outlet />
     </div>
   );
