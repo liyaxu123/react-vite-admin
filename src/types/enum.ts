@@ -28,7 +28,7 @@ export enum ThemeLayout {
 }
 
 export enum ThemeColorPresets {
-  Default = "default",
+  Green = "green",
   Cyan = "cyan",
   Purple = "purple",
   Blue = "blue",

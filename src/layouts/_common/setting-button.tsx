@@ -6,6 +6,8 @@ import SimpleBar from "simplebar-react";
 import { motion } from "motion/react";
 import styled from "styled-components";
 import { cn } from "@/utils";
+import { ThemeColorPresets } from "@/types/enum";
+import { useSettings, useSettingActions } from "@/store/settingStore";
 
 interface ToggleButtonProps {
   title: string;
@@ -93,7 +95,43 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
   );
 };
 
+// 预设主题色
+const themePresets = [
+  {
+    key: ThemeColorPresets.Green,
+    color: "rgb(0,167,111)",
+    bg: "rgba(0,167,111,0.08)",
+  },
+  {
+    key: ThemeColorPresets.Cyan,
+    color: "rgb(7,141,238)",
+    bg: "rgba(7,141,238,0.08)",
+  },
+  {
+    key: ThemeColorPresets.Purple,
+    color: "rgb(118,53,220)",
+    bg: "rgba(118,53,220,0.08)",
+  },
+  {
+    key: ThemeColorPresets.Blue,
+    color: "rgb(12,104,233)",
+    bg: "rgba(12,104,233,0.08)",
+  },
+  {
+    key: ThemeColorPresets.Orange,
+    color: "rgb(253,169,45)",
+    bg: "rgba(253,169,45,0.08)",
+  },
+  {
+    key: ThemeColorPresets.Red,
+    color: "rgb(255,48,48)",
+    bg: "rgba(255,48,48,0.08)",
+  },
+];
+
 const SettingButton = () => {
+  const settings = useSettings();
+  const { setSettings } = useSettingActions();
   const [open, setOpen] = useState(false);
 
   return (
@@ -161,7 +199,8 @@ const SettingButton = () => {
         {/* 主体区域 */}
         <div style={{ height: "calc(100% - 64px)" }}>
           <SimpleBar className="h-full">
-            <div className="px-5 pb-10">
+            <div className="flex flex-col gap-12 px-5 pb-10">
+              {/* 设置按钮 */}
               <div className="grid grid-cols-2 gap-4">
                 <ToggleButton
                   title="暗黑模式"
@@ -188,6 +227,37 @@ const SettingButton = () => {
                     console.log(value);
                   }}
                 />
+              </div>
+
+              {/* 预设主题色 */}
+              <div className="p-4 pt-8 border-[rgba(145,158,171,0.12)] h-[190px] border rounded-2xl relative">
+                <span className="px-[10px] h-[22px] bg-[rgb(28,37,46)] text-white rounded-[22px] text-[13px] leading-[22px] font-semibold absolute -top-3">
+                  预设主题色
+                </span>
+                <div className="grid h-full grid-cols-3 gap-3">
+                  {themePresets.map((item) => (
+                    <button
+                      key={item.key}
+                      className={
+                        settings.themeColorPresets === item.key
+                          ? `rounded-xl bg-[${item.bg}]`
+                          : "rounded-xl"
+                      }
+                      onClick={() => {
+                        setSettings({
+                          ...settings,
+                          themeColorPresets: item.key,
+                        });
+                      }}
+                    >
+                      <Iconify
+                        icon="solar:pallete-2-bold"
+                        size={28}
+                        color={item.color}
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </SimpleBar>

@@ -1,16 +1,17 @@
 import Router from "./router/index";
 import { ConfigProvider, App as AntdApp } from "antd";
 import Toast from "@/components/toast";
+import { useSettings } from "@/store/settingStore";
 
 function App() {
+  const settings = useSettings();
+
   return (
     <ConfigProvider
       theme={{
         token: {
-          // f4a261 4772fa
-          colorPrimary: "#f4a261",
+          colorPrimary: settings.themeColorPresets,
         },
-        components: {},
       }}
     >
       <AntdApp className="h-screen">
