@@ -17,7 +17,7 @@
 /* ========================== Dropdown 自定义样式 ============================================= */
 .lyx-dropdown .ant-dropdown-menu {
   backdrop-filter: blur(20px);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--ant-color-bg-elevated);
   background-image: url("./assets/images/bg-left-top.svg"),
     url("./assets/images/bg-right-bottom.svg");
   background-size: 50%, 50%;
@@ -63,7 +63,7 @@
 /* ========================== Popover 自定义样式 ======================================= */
 .lyx-popover {
   padding: 0px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--ant-color-bg-elevated);
   background-image: url("./assets/images/bg-left-top.svg"),
     url("./assets/images/bg-right-bottom.svg");
   background-size: 50%, 50%;
@@ -73,7 +73,7 @@
 }
 
 .lyx-popover .ant-popover-arrow::before {
-  background-color: #fff;
+  background-color: var(--antd-arrow-background-color);
   background-image: linear-gradient(
     45deg,
     rgba(0, 184, 217, 0.1),

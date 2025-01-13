@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, memo } from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
 import DashboardLayout from "@/layouts/dashboard";
 import { ErrorRoutes } from "./routes/error-routes";
@@ -16,7 +16,7 @@ const PAGE_NOT_FOUND_ROUTE = {
   element: <Navigate to="/404" replace />,
 };
 
-export default function Router() {
+function Router() {
   // 需要权限的路由
   const permissionRoutes = [
     {
@@ -47,3 +47,5 @@ export default function Router() {
 
   return <RouterProvider router={router} />;
 }
+
+export default memo(Router);

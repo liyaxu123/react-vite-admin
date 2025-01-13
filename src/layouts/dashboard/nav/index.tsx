@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Layout, Menu, Button, theme, ConfigProvider } from "antd";
 import SimpleBar from "simplebar-react";
 import { Iconify } from "@/components/icon";
 import MotionContainer from "@/components/animate/motion-container";
 import { getVariant, AnimateEnum } from "@/components/animate/variants";
 import { motion } from "motion/react";
+import useDynamicTheme from "@/hooks/useDynamicTheme";
 
 const { Sider } = Layout;
 
@@ -44,7 +45,7 @@ const items = [
       {
         key: "2-1",
         label: "用户",
-        type: 'group',
+        type: "group",
         children: [
           {
             key: "2-1-1",
@@ -59,7 +60,7 @@ const items = [
       {
         key: "2-2",
         label: "系统",
-        type: 'group',
+        type: "group",
         children: [
           {
             key: "2-2-1",
@@ -139,6 +140,16 @@ const items = [
 
 const Nav = () => {
   const { token } = theme.useToken();
+  console.log("token:", token);
+  const SiderStyle = useDynamicTheme({
+    dark: {
+      backgroundColor: token.colorBgContainer,
+    },
+    light: {
+      backgroundColor: "white",
+    },
+  });
+
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -147,7 +158,8 @@ const Nav = () => {
       trigger={null}
       collapsed={collapsed}
       width={300}
-      className="bg-white border-r border-r-[rgba(145,158,171,0.08)]"
+      className={`border-r border-r-[rgba(145,158,171,0.08)]`}
+      style={SiderStyle}
     >
       {/* logo */}
       <div className="h-[72px] flex gap-2 items-center justify-center">
@@ -211,4 +223,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default memo(Nav);

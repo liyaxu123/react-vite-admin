@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconButton, Iconify } from "@/components/icon";
-import { Tooltip, Drawer } from "antd";
+import { Tooltip, Drawer, theme } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import SimpleBar from "simplebar-react";
 import { motion } from "motion/react";
 import styled from "styled-components";
 import { cn } from "@/utils";
-import { ThemeColorPresets } from "@/types/enum";
+import { ThemeColorPresets, ThemeMode } from "@/types/enum";
 import { useSettings, useSettingActions } from "@/store/settingStore";
+import type { GlobalToken } from "antd";
 
 interface ToggleButtonProps {
   title: string;
@@ -18,10 +19,18 @@ interface ToggleButtonProps {
   onChange?: (value: boolean) => void;
 }
 
-const SwitchWrap = styled.div`
+const SwitchWrap = styled.div<{ $theme: GlobalToken }>`
   width: 30px;
   height: 18px;
-  background-color: rgba(145, 158, 171, 0.48);
+  /* background-color: rgba(145, 158, 171, 0.48); */
+  background-color: ${(props) => {
+    console.log(props.$theme);
+    if (document.documentElement.classList.contains("dark")) {
+      return props.$theme.colorBgContainer;
+    } else {
+      return "rgba(145, 158, 171, 0.48)";
+    }
+  }};
   display: flex;
   justify-content: flex-start;
   border-radius: 20px;
@@ -68,7 +77,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
       <div className="flex items-center justify-between mb-6">
         {icon}
 
-        <SwitchWrap data-ison={isOn}>
+        <SwitchWrap data-ison={isOn} $theme={theme.useToken().token}>
           <motion.div
             className="handle"
             layout
@@ -81,7 +90,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
         </SwitchWrap>
       </div>
       <div className="flex items-center justify-between">
-        <span className="font-semibold text-left text-[rgb(28,37,46)] text-[13px]">
+        <span className="font-semibold text-left text-[rgb(28,37,46)] dark:text-white text-[13px]">
           {title}
         </span>
 
@@ -96,7 +105,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({
 };
 
 // 预设主题色
-const themePresets = [
+export const themePresets = [
   {
     key: ThemeColorPresets.Green,
     color: "rgb(0,167,111)",
@@ -134,6 +143,12 @@ const SettingButton = () => {
   const { setSettings } = useSettingActions();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (settings.themeMode === ThemeMode.Dark) {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
   return (
     <>
       <IconButton className="w-10 h-10" onClick={() => setOpen(true)}>
@@ -158,7 +173,9 @@ const SettingButton = () => {
       >
         {/* 头部区域 */}
         <div className="flex items-center justify-between py-4 pl-5 pr-2">
-          <h6 className="text-[18px] font-bold text-[rgb(28,37,46)]">设置</h6>
+          <h6 className="text-[18px] font-bold text-[rgb(28,37,46)] dark:text-white">
+            设置
+          </h6>
 
           <div className="flex items-center">
             {/* 全屏按钮 */}
@@ -168,7 +185,7 @@ const SettingButton = () => {
                 <Iconify
                   icon="solar:full-screen-square-outline"
                   size={20}
-                  color="rgb(99, 115, 129)"
+                  className="text-[rgb(99,115,129)] dark:text-[rgb(145,158,171)]"
                 />
               </Tooltip>
             </IconButton>
@@ -179,7 +196,7 @@ const SettingButton = () => {
                 <Iconify
                   icon="solar:restart-bold"
                   size={20}
-                  color="rgb(99, 115, 129)"
+                  className="text-[rgb(99,115,129)] dark:text-[rgb(145,158,171)]"
                 />
               </Tooltip>
             </IconButton>
@@ -189,7 +206,7 @@ const SettingButton = () => {
                 <Iconify
                   icon="material-symbols:close-rounded"
                   size={20}
-                  color="rgb(99, 115, 129)"
+                  className="text-[rgb(99,115,129)] dark:text-[rgb(145,158,171)]"
                 />
               </Tooltip>
             </IconButton>
@@ -204,15 +221,21 @@ const SettingButton = () => {
               <div className="grid grid-cols-2 gap-4">
                 <ToggleButton
                   title="暗黑模式"
+                  defaultChecked={settings.themeMode === ThemeMode.Dark}
                   icon={
                     <Iconify
                       icon="solar:moon-fog-bold-duotone"
                       size={24}
-                      color="#1c252e"
+                      className="dark:text-white text-[#1c252e]"
                     />
                   }
                   onChange={(value: boolean) => {
-                    console.log(value);
+                    document.documentElement.classList.toggle("dark", value);
+
+                    setSettings({
+                      ...settings,
+                      themeMode: value ? ThemeMode.Dark : ThemeMode.Light,
+                    });
                   }}
                 />
 
@@ -221,7 +244,11 @@ const SettingButton = () => {
                   tips="仅限仪表盘，分辨率大于1600px(xl)"
                   defaultChecked
                   icon={
-                    <Iconify icon="codex:stretch" size={24} color="#1c252e" />
+                    <Iconify
+                      icon="codex:stretch"
+                      size={24}
+                      className="dark:text-white text-[#1c252e]"
+                    />
                   }
                   onChange={(value: boolean) => {
                     console.log(value);
@@ -238,11 +265,13 @@ const SettingButton = () => {
                   {themePresets.map((item) => (
                     <button
                       key={item.key}
-                      className={
-                        settings.themeColorPresets === item.key
-                          ? `rounded-xl bg-[${item.bg}]`
-                          : "rounded-xl"
-                      }
+                      className="rounded-xl"
+                      style={{
+                        backgroundColor:
+                          settings.themeColorPresets === item.key
+                            ? item.bg
+                            : "",
+                      }}
                       onClick={() => {
                         setSettings({
                           ...settings,
