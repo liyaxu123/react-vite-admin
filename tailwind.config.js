@@ -16,7 +16,10 @@ export default {
       "2xl": "1600px",
     },
     extend: {
-      colors: {}
+      colors: {
+        "color-bg-container": "var(--ant-color-bg-container)",
+        "color-bg-elevated": "var(--ant-color-bg-elevated)",
+      }
     },
   },
   plugins: [],

@@ -1,4 +1,4 @@
-import { Layout, theme } from "antd";
+import { Layout } from "antd";
 const { Header: AntdHeader } = Layout;
 import { IconButton, Iconify } from "@/components/icon";
 import SettingButton from "@/layouts/_common/setting-button";
@@ -7,24 +7,10 @@ import NoticeButton from "@/layouts/_common/notice";
 import SearchButton from "@/layouts/_common/search-button";
 import TeamSwitch from "@/layouts/_common/team-switch";
 import ContactsButton from "@/layouts/_common/contacts-button";
-import useDynamicTheme from "@/hooks/useDynamicTheme";
 
 const Header = () => {
-  const { token } = theme.useToken();
-  const headerStyle = useDynamicTheme({
-    dark: {
-      backgroundColor: token.colorBgContainer,
-    },
-    light: {
-      backgroundColor: "rgba(249,250,251,0.8)",
-    },
-  });
-
   return (
-    <AntdHeader
-      className={`h-[72px] flex items-center justify-between backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 px-10`}
-      style={headerStyle}
-    >
+    <AntdHeader className="h-[72px] flex items-center justify-between backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 px-10 bg-[rgba(249,250,251,0.8)] dark:bg-color-bg-container">
       <div>
         <TeamSwitch />
       </div>

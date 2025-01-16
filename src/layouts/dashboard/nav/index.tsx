@@ -5,7 +5,6 @@ import { Iconify } from "@/components/icon";
 import MotionContainer from "@/components/animate/motion-container";
 import { getVariant, AnimateEnum } from "@/components/animate/variants";
 import { motion } from "motion/react";
-import useDynamicTheme from "@/hooks/useDynamicTheme";
 
 const { Sider } = Layout;
 
@@ -141,14 +140,6 @@ const items = [
 const Nav = () => {
   const { token } = theme.useToken();
   console.log("token:", token);
-  const SiderStyle = useDynamicTheme({
-    dark: {
-      backgroundColor: token.colorBgContainer,
-    },
-    light: {
-      backgroundColor: "white",
-    },
-  });
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -158,8 +149,7 @@ const Nav = () => {
       trigger={null}
       collapsed={collapsed}
       width={300}
-      className={`border-r border-r-[rgba(145,158,171,0.08)]`}
-      style={SiderStyle}
+      className="border-r border-r-[rgba(145,158,171,0.08)] bg-color-bg-container"
     >
       {/* logo */}
       <div className="h-[72px] flex gap-2 items-center justify-center">

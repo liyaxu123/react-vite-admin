@@ -15,7 +15,10 @@ function App() {
   return (
     <ConfigProvider
       theme={{
-        cssVar: true,
+        cssVar: {
+          key: "app",
+        },
+        hashed: false,
         // 1. 单独使用暗色算法
         algorithm:
           settings.themeMode === ThemeMode.Dark

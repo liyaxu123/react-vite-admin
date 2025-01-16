@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Button, Menu, Tooltip, Drawer, Avatar, theme, type MenuProps } from "antd";
+import { Button, Menu, Tooltip, Drawer, Avatar, type MenuProps } from "antd";
 import { NavLink } from "react-router";
 import { motion } from "motion/react";
 import { useRouter } from "@/router/hooks";
 import { useUserActions, useUserInfo } from "@/store/userStore";
 import { IconButton, Iconify } from "@/components/icon";
-import useDynamicTheme from "@/hooks/useDynamicTheme";
 import defaultAvatar from "@/assets/images/avatar-25.webp";
 import avatar2 from "@/assets/images/avatar-2.webp";
 import avatar3 from "@/assets/images/avatar-3.webp";
@@ -19,15 +18,6 @@ const AccountDropdown = () => {
   const { username, email, avatar } = useUserInfo();
   const { clearUserInfoAndToken } = useUserActions();
   const [open, setOpen] = useState(false);
-  const { token } = theme.useToken();
-  const menuStyle = useDynamicTheme({
-    dark: {
-      backgroundColor: token.colorBgElevated,
-    },
-    light: {
-      backgroundColor: "white",
-    },
-  });
 
   const logout = () => {
     try {
@@ -196,7 +186,11 @@ const AccountDropdown = () => {
         </div>
 
         <div className="px-5 py-6 border-dashed border-y border-[rgba(145,158,171,0.2)]">
-          <Menu items={items} style={{ borderInlineEnd: "none", ...menuStyle }} />
+          <Menu
+            items={items}
+            style={{ borderInlineEnd: "none" }}
+            className="bg-color-bg-elevated"
+          />
         </div>
 
         <div className="px-5 py-6">
