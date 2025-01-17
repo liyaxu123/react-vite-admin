@@ -242,7 +242,7 @@ const SettingButton = () => {
                 <ToggleButton
                   title="紧促布局"
                   tips="仅限仪表盘，分辨率大于1600px(xl)"
-                  defaultChecked
+                  defaultChecked={settings.themeStretch}
                   icon={
                     <Iconify
                       icon="codex:stretch"
@@ -252,6 +252,10 @@ const SettingButton = () => {
                   }
                   onChange={(value: boolean) => {
                     console.log(value);
+                    setSettings({
+                      ...settings,
+                      themeStretch: value,
+                    });
                   }}
                 />
               </div>

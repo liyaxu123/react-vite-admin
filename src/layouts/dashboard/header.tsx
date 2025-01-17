@@ -10,7 +10,7 @@ import ContactsButton from "@/layouts/_common/contacts-button";
 
 const Header = () => {
   return (
-    <AntdHeader className="h-[72px] flex items-center justify-between backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 px-10 bg-[rgba(249,250,251,0.8)] dark:bg-color-bg-container">
+    <AntdHeader className="h-[72px] flex items-center justify-between backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 px-10 bg-[rgba(249,250,251,0.6)] dark:bg-color-bg-container">
       <div>
         <TeamSwitch />
       </div>
