@@ -13,6 +13,7 @@ type SettingsType = {
   themeLayout: ThemeLayout;
   themeStretch: boolean;
   darkSidebar: boolean;
+  pageTransition: string;
 };
 
 type SettingStore = {
@@ -38,6 +39,8 @@ const useSettingStore = create<SettingStore>()(
           themeStretch: false,
           // 是否黑暗主题菜单
           darkSidebar: false,
+          // 页面过渡动画
+          pageTransition: "fadeInLeft",
         },
 
         actions: {

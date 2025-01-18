@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton, Iconify } from "@/components/icon";
-import { Tooltip, Drawer, theme } from "antd";
+import { Tooltip, Drawer, theme, Select } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import SimpleBar from "simplebar-react";
 import { motion } from "motion/react";
@@ -140,6 +140,7 @@ export const themePresets = [
 
 const SettingButton = () => {
   const settings = useSettings();
+
   const { setSettings } = useSettingActions();
   const [open, setOpen] = useState(false);
 
@@ -263,7 +264,10 @@ const SettingButton = () => {
                   {themePresets.map((item) => (
                     <button
                       key={item.key}
-                      className="rounded-xl"
+                      className={cn(
+                        "rounded-xl",
+                        settings.themeColorPresets === item.key ? "shadow" : ""
+                      )}
                       style={{
                         backgroundColor:
                           settings.themeColorPresets === item.key
@@ -284,6 +288,192 @@ const SettingButton = () => {
                       />
                     </button>
                   ))}
+                </div>
+              </div>
+
+              {/* 导航设置 */}
+              <div className="p-4 pt-8 border-[rgba(145,158,171,0.12)] border rounded-2xl relative">
+                <span className="px-[10px] h-[22px] bg-[rgb(28,37,46)] text-white rounded-[22px] text-[13px] leading-[22px] font-semibold absolute -top-3">
+                  导航设置
+                </span>
+                <p className="text-[rgb(99,115,129)] pb-[10px]">布局</p>
+                <div className="grid h-16 grid-cols-3 gap-3">
+                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden shadow">
+                    <span
+                      className="inline-flex w-full h-full"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))",
+                        mask: `url(src/assets/images/ic-nav-vertical.svg) center center / contain no-repeat`,
+                      }}
+                    ></span>
+                  </button>
+                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden">
+                    <span
+                      className="inline-flex w-full h-full"
+                      style={{
+                        background: "rgb(145, 158, 171)",
+                        mask: `url(src/assets/images/ic-nav-horizontal.svg) center center / contain no-repeat`,
+                      }}
+                    ></span>
+                  </button>
+                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden">
+                    <span
+                      className="inline-flex w-full h-full"
+                      style={{
+                        background: "rgb(145, 158, 171)",
+                        mask: `url(src/assets/images/ic-nav-mini.svg) center center / contain no-repeat`,
+                      }}
+                    ></span>
+                  </button>
+                </div>
+                <p className="text-[rgb(99,115,129)] pt-5 pb-[10px]">颜色</p>
+                <div className="flex gap-3">
+                  <button
+                    className={cn(
+                      "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
+                      settings.darkSidebar
+                        ? "text-[rgb(145,158,171)]"
+                        : "border shadow"
+                    )}
+                    onClick={() => {
+                      setSettings({
+                        ...settings,
+                        darkSidebar: false,
+                      });
+                    }}
+                  >
+                    <div
+                      className="w-6 h-6"
+                      style={{
+                        background: settings.darkSidebar
+                          ? "rgb(145, 158, 171)"
+                          : "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))",
+                        mask: `url(src/assets/images/ic-sidebar-outline.svg) center center / contain no-repeat`,
+                      }}
+                    ></div>
+                    一体
+                  </button>
+                  <button
+                    className={cn(
+                      "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
+                      settings.darkSidebar
+                        ? "border shadow"
+                        : "text-[rgb(145,158,171)]"
+                    )}
+                    onClick={() => {
+                      setSettings({
+                        ...settings,
+                        darkSidebar: true,
+                      });
+                    }}
+                  >
+                    <div
+                      className="w-6 h-6"
+                      style={{
+                        background: settings.darkSidebar
+                          ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
+                          : "rgb(145, 158, 171)",
+                        mask: `url(src/assets/images/ic-sidebar-filled.svg) center center / contain no-repeat`,
+                      }}
+                    ></div>
+                    突出
+                  </button>
+                </div>
+              </div>
+
+              {/* 页面切换动画 */}
+              <div className="p-4 pt-8 border-[rgba(145,158,171,0.12)] border rounded-2xl relative">
+                <span className="px-[10px] h-[22px] bg-[rgb(28,37,46)] text-white rounded-[22px] text-[13px] leading-[22px] font-semibold absolute -top-3">
+                  页面切换动画
+                </span>
+                <div className="h-full">
+                  <Select
+                    variant="filled"
+                    defaultValue={settings.pageTransition}
+                    showSearch
+                    suffixIcon={
+                      <Iconify icon="gravity-ui:chevrons-expand-vertical" />
+                    }
+                    placeholder="选择页面切换动画"
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    onChange={(value) => {
+                      setSettings({
+                        ...settings,
+                        pageTransition: value,
+                      });
+                    }}
+                    options={[
+                      {
+                        label: "Fade",
+                        options: [
+                          { label: "fadeIn", value: "fadeIn" },
+                          { label: "fadeInUp", value: "fadeInUp" },
+                          {
+                            label: "fadeInDown",
+                            value: "fadeInDown",
+                          },
+                          {
+                            label: "fadeInLeft",
+                            value: "fadeInLeft",
+                          },
+                          {
+                            label: "fadeInRight",
+                            value: "fadeInRight",
+                          },
+                        ],
+                      },
+                      {
+                        label: "Zoom",
+                        options: [
+                          { label: "zoomIn", value: "zoomIn" },
+                          { label: "zoomInUp", value: "zoomInUp" },
+                          { label: "zoomInDown", value: "zoomInDown" },
+                          { label: "zoomInLeft", value: "zoomInLeft" },
+                          { label: "zoomInRight", value: "zoomInRight" },
+                        ],
+                      },
+                      {
+                        label: "Slide",
+                        options: [
+                          { label: "slideIn", value: "slideIn" },
+                          { label: "slideInUp", value: "slideInUp" },
+                          { label: "slideInDown", value: "slideInDown" },
+                          { label: "slideInLeft", value: "slideInLeft" },
+                          { label: "slideInRight", value: "slideInRight" },
+                        ],
+                      },
+                      {
+                        label: "Bounce",
+                        options: [
+                          { label: "bounceIn", value: "bounceIn" },
+                          { label: "bounceInUp", value: "bounceInUp" },
+                          { label: "bounceInDown", value: "bounceInDown" },
+                          { label: "bounceInLeft", value: "bounceInLeft" },
+                          { label: "bounceInRight", value: "bounceInRight" },
+                        ],
+                      },
+                      {
+                        label: "Flip",
+                        options: [
+                          { label: "flipInX", value: "flipInX" },
+                          { label: "flipInY", value: "flipInY" },
+                        ],
+                      },
+                      {
+                        label: "Scale",
+                        options: [
+                          { label: "scaleInX", value: "scaleInX" },
+                          { label: "scaleInY", value: "scaleInY" },
+                        ],
+                      },
+                    ]}
+                    style={{ width: "100%" }}
+                  />
                 </div>
               </div>
             </div>

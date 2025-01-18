@@ -6,10 +6,12 @@ import MotionContainer from "@/components/animate/motion-container";
 import { getVariant, AnimateEnum } from "@/components/animate/variants";
 import { motion } from "motion/react";
 import { useRouter } from "@/router/hooks";
+import { useSettings } from "@/store/settingStore";
 
 const { Sider } = Layout;
 
 const Nav = () => {
+  const settings = useSettings();
   const router = useRouter();
   const { token } = theme.useToken();
   console.log("token:", token);
@@ -209,6 +211,7 @@ const Nav = () => {
           }}
         >
           <Menu
+            theme={settings.darkSidebar ? "dark" : "light"}
             defaultSelectedKeys={["1"]}
             mode="inline"
             items={items}

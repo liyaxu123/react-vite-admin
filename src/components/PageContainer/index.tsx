@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/utils";
 import { useSettings } from "@/store/settingStore";
 import { motion } from "motion/react";
-import { getVariant, AnimateEnum } from "@/components/animate/variants";
+import { getVariant } from "@/components/animate/variants";
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +20,7 @@ const PageContainer: React.FC<Props> = ({ children, normalClassName }) => {
         "m-auto min-h-full w-full flex-grow sm:px-10 sm:pt-2 sm:pb-16 transition-all duration-1000",
         settings.themeStretch ? normalClassName : ""
       )}
+      key={settings.pageTransition}
     >
       <motion.div
         layout
@@ -28,7 +29,7 @@ const PageContainer: React.FC<Props> = ({ children, normalClassName }) => {
           stiffness: 700,
           damping: 30,
         }}
-        variants={getVariant(AnimateEnum.fadeInLeft)}
+        variants={getVariant(settings.pageTransition)}
       >
         {children}
       </motion.div>
