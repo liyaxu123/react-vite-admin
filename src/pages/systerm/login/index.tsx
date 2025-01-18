@@ -13,7 +13,7 @@ const Login = () => {
   const { formType } = useContext(LoginStateContext);
 
   return (
-    <MotionContainer className="flex flex-col items-center justify-center w-screen h-screen bg-white lg:bg-gray-200">
+    <MotionContainer className="flex flex-col items-center justify-center w-screen h-screen bg-white lg:bg-gray-200 lg:dark:bg-color-bg-elevated dark:bg-color-bg-container">
       <AnimatePresence mode="wait">
         {formType === formTypeEnum.login ? "登录" : "注册"}
         {formType === formTypeEnum.login && <LoginForm />}

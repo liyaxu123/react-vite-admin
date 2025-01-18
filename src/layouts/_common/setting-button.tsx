@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { IconButton, Iconify } from "@/components/icon";
 import { Tooltip, Drawer, theme } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -142,12 +142,6 @@ const SettingButton = () => {
   const settings = useSettings();
   const { setSettings } = useSettingActions();
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (settings.themeMode === ThemeMode.Dark) {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
 
   return (
     <>

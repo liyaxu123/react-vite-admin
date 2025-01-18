@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Router from "./router/index";
 import { ConfigProvider, App as AntdApp, theme } from "antd";
 import Toast from "@/components/toast";
@@ -7,6 +8,12 @@ import { ThemeMode } from "@/types/enum";
 
 function App() {
   const settings = useSettings();
+
+  useEffect(() => {
+    if (settings.themeMode === ThemeMode.Dark) {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
 
   const colorPrimary = themePresets.find(
     (item) => item.key === settings.themeColorPresets
