@@ -7,13 +7,21 @@ import NoticeButton from "@/layouts/_common/notice";
 import SearchButton from "@/layouts/_common/search-button";
 import TeamSwitch from "@/layouts/_common/team-switch";
 import ContactsButton from "@/layouts/_common/contacts-button";
+import Nav from "./nav";
+import { useSettings } from "@/store/settingStore";
+import { ThemeLayout } from "@/types/enum";
 
 const Header = () => {
+  const settings = useSettings();
+
   return (
-    <AntdHeader className="h-[72px] flex items-center justify-between backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 px-10 bg-[rgba(249,250,251,0.6)] dark:bg-color-bg-container">
+    <AntdHeader className="h-[72px] flex justify-between items-center backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 bg-[rgba(249,250,251,0.6)] dark:bg-color-bg-container px-10">
       <div>
         <TeamSwitch />
       </div>
+
+      {settings.themeLayout === ThemeLayout.Horizontal && <Nav />}
+
       <div className="flex items-center h-full gap-2">
         <SearchButton />
         <IconButton className="w-10 h-10">

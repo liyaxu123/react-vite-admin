@@ -6,7 +6,7 @@ import SimpleBar from "simplebar-react";
 import { motion } from "motion/react";
 import styled from "styled-components";
 import { cn } from "@/utils";
-import { ThemeColorPresets, ThemeMode } from "@/types/enum";
+import { ThemeColorPresets, ThemeLayout, ThemeMode } from "@/types/enum";
 import { useSettings, useSettingActions } from "@/store/settingStore";
 import type { GlobalToken } from "antd";
 
@@ -298,30 +298,75 @@ const SettingButton = () => {
                 </span>
                 <p className="text-[rgb(99,115,129)] pb-[10px]">布局</p>
                 <div className="grid h-16 grid-cols-3 gap-3">
-                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden shadow">
+                  <button
+                    className={cn(
+                      "flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden",
+                      settings.themeLayout === ThemeLayout.Vertical
+                        ? "shadow"
+                        : ""
+                    )}
+                    onClick={() => {
+                      setSettings({
+                        ...settings,
+                        themeLayout: ThemeLayout.Vertical,
+                      });
+                    }}
+                  >
                     <span
                       className="inline-flex w-full h-full"
                       style={{
                         background:
-                          "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))",
+                          settings.themeLayout === ThemeLayout.Vertical
+                            ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
+                            : "rgb(145, 158, 171)",
                         mask: `url(src/assets/images/ic-nav-vertical.svg) center center / contain no-repeat`,
                       }}
                     ></span>
                   </button>
-                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden">
+                  <button
+                    className={cn(
+                      "flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden",
+                      settings.themeLayout === ThemeLayout.Horizontal
+                        ? "shadow"
+                        : ""
+                    )}
+                    onClick={() => {
+                      setSettings({
+                        ...settings,
+                        themeLayout: ThemeLayout.Horizontal,
+                      });
+                    }}
+                  >
                     <span
                       className="inline-flex w-full h-full"
                       style={{
-                        background: "rgb(145, 158, 171)",
+                        background:
+                          settings.themeLayout === ThemeLayout.Horizontal
+                            ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
+                            : "rgb(145, 158, 171)",
                         mask: `url(src/assets/images/ic-nav-horizontal.svg) center center / contain no-repeat`,
                       }}
                     ></span>
                   </button>
-                  <button className="flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden">
+                  <button
+                    className={cn(
+                      "flex items-center justify-center border border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden",
+                      settings.themeLayout === ThemeLayout.Mini ? "shadow" : ""
+                    )}
+                    onClick={() => {
+                      setSettings({
+                        ...settings,
+                        themeLayout: ThemeLayout.Mini,
+                      });
+                    }}
+                  >
                     <span
                       className="inline-flex w-full h-full"
                       style={{
-                        background: "rgb(145, 158, 171)",
+                        background:
+                          settings.themeLayout === ThemeLayout.Mini
+                            ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
+                            : "rgb(145, 158, 171)",
                         mask: `url(src/assets/images/ic-nav-mini.svg) center center / contain no-repeat`,
                       }}
                     ></span>
@@ -334,7 +379,7 @@ const SettingButton = () => {
                       "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
                       settings.darkSidebar
                         ? "text-[rgb(145,158,171)]"
-                        : "border shadow"
+                        : "border shadow bg-color-bg-container"
                     )}
                     onClick={() => {
                       setSettings({
@@ -358,7 +403,7 @@ const SettingButton = () => {
                     className={cn(
                       "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
                       settings.darkSidebar
-                        ? "border shadow"
+                        ? "border shadow bg-color-bg-container"
                         : "text-[rgb(145,158,171)]"
                     )}
                     onClick={() => {

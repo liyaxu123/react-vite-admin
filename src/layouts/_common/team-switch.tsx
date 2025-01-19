@@ -73,7 +73,7 @@ const TeamSwitch = () => {
       overlayStyle={{ minWidth: 248 }}
       onOpenChange={(open: boolean) => setIsOpen(open)}
     >
-      <div className="relative w-auto h-8 rounded-lg cursor-pointer">
+      <div className="relative w-auto h-8 rounded-lg cursor-pointer min-w-[150px]">
         {/* 背景层 */}
         <div
           className={`w-[calc(100%+8px)] h-full bg-[#63738114] absolute -left-1 rounded-lg ${

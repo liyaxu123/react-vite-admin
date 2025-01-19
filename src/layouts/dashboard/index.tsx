@@ -4,8 +4,12 @@ import { CircleLoading } from "@/components/loading";
 import Nav from "./nav";
 import Header from "./header";
 import Main from "./main";
+import { useSettings } from "@/store/settingStore";
+import { ThemeLayout } from "@/types/enum";
 
 const DashboardLayout: React.FC = () => {
+  const settings = useSettings();
+
   return (
     <Layout className="h-screen overflow-hidde">
       <Suspense
@@ -15,7 +19,7 @@ const DashboardLayout: React.FC = () => {
           </div>
         }
       >
-        <Nav />
+        {settings.themeLayout !== ThemeLayout.Horizontal && <Nav />}
         <Layout className="bg-[var(--body-bg-color)] overflow-y-auto">
           <Header />
           <Main />
