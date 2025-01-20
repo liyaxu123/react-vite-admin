@@ -24,7 +24,6 @@ const SwitchWrap = styled.div<{ $theme: GlobalToken }>`
   height: 18px;
   /* background-color: rgba(145, 158, 171, 0.48); */
   background-color: ${(props) => {
-    console.log(props.$theme);
     if (document.documentElement.classList.contains("dark")) {
       return props.$theme.colorBgContainer;
     } else {
@@ -246,7 +245,6 @@ const SettingButton = () => {
                     />
                   }
                   onChange={(value: boolean) => {
-                    console.log(value);
                     setSettings({
                       ...settings,
                       themeStretch: value,

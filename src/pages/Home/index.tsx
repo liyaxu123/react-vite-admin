@@ -1,12 +1,20 @@
 import PageContainer from "@/components/PageContainer";
-import { Button } from "antd";
+import { Row, Col } from "antd";
+import BannerCard from "./components/BannerCard";
+import CarouselCard from "./components/CarouselCard";
 
 const Home = () => {
   return (
-    <PageContainer normalClassName="xl:max-w-[1200px]">
-      <div className="h-[800vh] bg-red-100 p-4 rounded-lg">
-        Home Page
-        <Button type="primary">点我</Button>
+    <PageContainer normalClassName="2xl:max-w-[1536px]">
+      <div className="box-border">
+        <Row gutter={24}>
+          <Col span={16}>
+            <BannerCard />
+          </Col>
+          <Col span={8}>
+            <CarouselCard />
+          </Col>
+        </Row>
       </div>
     </PageContainer>
   );
