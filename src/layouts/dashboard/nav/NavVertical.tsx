@@ -161,8 +161,8 @@ const NavVertical = () => {
       collapsed={settings.themeLayout === ThemeLayout.Mini}
       width={300}
       className={cn(
-        "border-r border-r-[rgba(145,158,171,0.08)] bg-color-bg-container",
-        settings.darkSidebar ? "bg-[rgb(0,21,41)]" : "bg-color-bg-container"
+        "border-r border-r-color-split bg-color-bg-base",
+        settings.darkSidebar ? "bg-[rgb(0,21,41)]" : "bg-color-bg-base"
       )}
     >
       {/* logo */}
@@ -220,7 +220,9 @@ const NavVertical = () => {
           theme={{
             components: {
               Menu: {
+                itemBg: "var(--ant-color-bg-base)",
                 subMenuItemBg: "transparent",
+                darkSubMenuItemBg: "var(--ant-menu-dark-sub-menu-item-bg)"
               },
             },
           }}

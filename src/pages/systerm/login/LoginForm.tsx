@@ -52,7 +52,7 @@ const LoginForm = () => {
       transition={{
         duration: 0.4,
       }}
-      className="w-[100%] lg:w-[420px] h-[560px] lg:h-[534px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl dark:bg-color-bg-container"
+      className="w-[100%] lg:w-[420px] h-[560px] lg:h-[534px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl dark:bg-color-bg-base"
     >
       <div className="flex flex-col items-center gap-3 mb-10">
         <h5 className="font-sans text-xl font-bold font-notoSansSC">登录</h5>

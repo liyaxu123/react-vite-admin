@@ -377,7 +377,7 @@ const SettingButton = () => {
                       "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
                       settings.darkSidebar
                         ? "text-[rgb(145,158,171)]"
-                        : "border shadow bg-color-bg-container"
+                        : "border shadow bg-color-bg-base"
                     )}
                     onClick={() => {
                       setSettings({
@@ -401,7 +401,7 @@ const SettingButton = () => {
                     className={cn(
                       "border-[rgba(145,158,171,0.08)] rounded-xl overflow-hidden h-14 w-[137px] flex items-center justify-center gap-3 font-semibold",
                       settings.darkSidebar
-                        ? "border shadow bg-color-bg-container"
+                        ? "border shadow bg-color-bg-base"
                         : "text-[rgb(145,158,171)]"
                     )}
                     onClick={() => {

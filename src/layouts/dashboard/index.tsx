@@ -20,7 +20,7 @@ const DashboardLayout: React.FC = () => {
         }
       >
         {settings.themeLayout !== ThemeLayout.Horizontal && <Nav />}
-        <Layout className="bg-[var(--body-bg-color)] overflow-y-auto">
+        <Layout className="overflow-y-auto bg-color-bg-base">
           <Header />
           <Main />
         </Layout>

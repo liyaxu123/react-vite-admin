@@ -24,6 +24,7 @@ export default function Card({ children, ...other }: Props) {
         backgroundImage: "none",
         boxShadow: boxShadow[themeMode],
         transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+        border: "1px solid var(--ant-color-border-secondary)",
         borderRadius: "16px",
         padding: "24px",
         overflow: "hidden",

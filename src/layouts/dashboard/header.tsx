@@ -15,7 +15,7 @@ const Header = () => {
   const settings = useSettings();
 
   return (
-    <AntdHeader className="h-[72px] flex justify-between items-center backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 bg-[rgba(249,250,251,0.6)] dark:bg-color-bg-container px-10">
+    <AntdHeader className="h-[72px] flex justify-between items-center backdrop-blur-[6px] sticky top-0 left-auto right-0 z-50 bg-[rgba(249,250,251,0.8)] dark:bg-color-bg-base px-10">
       <div>
         <TeamSwitch />
       </div>

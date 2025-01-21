@@ -61,7 +61,7 @@ const RegisterForm = () => {
       transition={{
         duration: 0.4,
       }}
-      className="w-[100%] lg:w-[420px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl dark:bg-color-bg-container"
+      className="w-[100%] lg:w-[420px] py-10 px-5 lg:bg-[#F9FAFB] lg:rounded-2xl dark:bg-color-bg-base"
     >
       <div className="flex flex-col items-center gap-3 mb-10">
         <h5 className="text-xl font-bold">注册</h5>
