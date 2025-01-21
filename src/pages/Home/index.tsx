@@ -3,6 +3,8 @@ import { Row, Col, theme } from "antd";
 import BannerCard from "./components/BannerCard";
 import CarouselCard from "./components/CarouselCard";
 import TotalCard from "./components/TotalCard";
+import CurrentDownloadCard from "./components/CurrentDownloadCard";
+import AreaInstalledCard from "./components/AreaInstalledCard";
 
 const Home = () => {
   const { token } = theme.useToken();
@@ -76,6 +78,15 @@ const Home = () => {
                 { label: "Aug", value: 9 },
               ]}
             />
+          </Col>
+        </Row>
+
+        <Row gutter={24} className="mt-6">
+          <Col span={8}>
+            <CurrentDownloadCard />
+          </Col>
+          <Col span={16}>
+            <AreaInstalledCard />
           </Col>
         </Row>
       </div>
