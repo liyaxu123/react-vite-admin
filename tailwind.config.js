@@ -17,6 +17,7 @@ export default {
     },
     extend: {
       colors: {
+        "color-primary": "var(--ant-color-primary)",
         "box-shadow": "var(--ant-box-shadow)",
         "color-border": "var(--ant-color-border)",
         "color-split": "var(--ant-color-split)",
