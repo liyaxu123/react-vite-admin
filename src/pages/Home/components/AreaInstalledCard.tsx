@@ -2,6 +2,8 @@ import Card from "@/components/card";
 import { Select, theme } from "antd";
 import CountUp from "react-countup";
 import { Column } from "@ant-design/plots";
+import { ThemeMode } from "@/types/enum";
+import { useSettings } from "@/store/settingStore";
 
 const type = [
   "Jan",
@@ -30,6 +32,7 @@ country.forEach((co) => {
 });
 
 const AreaInstalledCard = () => {
+  const settings = useSettings();
   const { token } = theme.useToken();
 
   const config = {
@@ -37,15 +40,21 @@ const AreaInstalledCard = () => {
     xField: "year",
     yField: "value",
     colorField: "country",
+    theme: settings.themeMode === ThemeMode.Dark ? "classicDark" : "classic",
     stack: true,
     autoFit: true,
-    margin: 0,
-    padding: 0,
+    padding: 12,
     inset: 0,
     axis: {
-      y: {},
-      x: {},
+      y: {
+        tick: false,
+        gridStrokeOpacity: 0.2,
+      },
+      x: {
+        tick: false,
+      },
     },
+    legend: false,
     style: {
       maxWidth: 25,
       radius: 5,
@@ -59,7 +68,7 @@ const AreaInstalledCard = () => {
 
   return (
     <Card>
-      <div className="h-[477.5px] w-full">
+      <div className="w-full">
         <div className="flex justify-between mb-6">
           <div>
             <div className="text-[18px] font-bold">区域安装</div>
@@ -109,7 +118,7 @@ const AreaInstalledCard = () => {
           </div>
         </div>
 
-        <div className="pt-5 h-[280px]">
+        <div className="mt-5 h-[300px]">
           <Column {...config} />
         </div>
       </div>

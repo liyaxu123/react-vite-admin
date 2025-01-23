@@ -5,6 +5,8 @@ import CarouselCard from "./components/CarouselCard";
 import TotalCard from "./components/TotalCard";
 import CurrentDownloadCard from "./components/CurrentDownloadCard";
 import AreaInstalledCard from "./components/AreaInstalledCard";
+import NewInvoice from "./components/NewInvoice";
+import RelatedApplications from "./components/RelatedApplications";
 
 const Home = () => {
   const { token } = theme.useToken();
@@ -87,6 +89,15 @@ const Home = () => {
           </Col>
           <Col span={16}>
             <AreaInstalledCard />
+          </Col>
+        </Row>
+
+        <Row gutter={24} className="mt-6">
+          <Col span={16}>
+            <NewInvoice />
+          </Col>
+          <Col span={8}>
+            <RelatedApplications />
           </Col>
         </Row>
       </div>

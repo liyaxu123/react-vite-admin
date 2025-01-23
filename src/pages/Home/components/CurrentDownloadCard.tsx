@@ -2,9 +2,11 @@ import Card from "@/components/card";
 import { useSettings } from "@/store/settingStore";
 import { ThemeMode } from "@/types/enum";
 import { Pie } from "@ant-design/plots";
+import { theme } from "antd";
 
 const CurrentDownloadCard = () => {
   const settings = useSettings();
+  const { token } = theme.useToken();
 
   const config = {
     data: [
@@ -30,6 +32,7 @@ const CurrentDownloadCard = () => {
           textAlign: "center",
           fontSize: 16,
           fontStyle: "bold",
+          fill: token.colorText,
         },
       },
     ],
