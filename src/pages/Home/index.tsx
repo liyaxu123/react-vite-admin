@@ -7,6 +7,8 @@ import CurrentDownloadCard from "./components/CurrentDownloadCard";
 import AreaInstalledCard from "./components/AreaInstalledCard";
 import NewInvoice from "./components/NewInvoice";
 import RelatedApplications from "./components/RelatedApplications";
+import TopAuthors from "./components/TopAuthors";
+import TopInstalledCountries from "./components/TopInstalledCountries";
 
 const Home = () => {
   const { token } = theme.useToken();
@@ -99,6 +101,16 @@ const Home = () => {
           <Col span={8}>
             <RelatedApplications />
           </Col>
+        </Row>
+
+        <Row gutter={24} className="mt-6">
+          <Col span={8}>
+            <TopInstalledCountries />
+          </Col>
+          <Col span={8}>
+            <TopAuthors />
+          </Col>
+          <Col span={8}></Col>
         </Row>
       </div>
     </PageContainer>
