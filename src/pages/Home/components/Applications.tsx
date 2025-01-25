@@ -39,11 +39,15 @@ const Applications = () => {
             style={{
               mask: "url(/src/assets/images/shape-circle-3.svg) center center / contain no-repeat",
             }}
-            animate={{ rotate: [360, 180, 0], opacity: [0.05, 0.5, 0.05] }}
+            animate={{
+              scale: [1, 2, 1],
+              rotate: [360, 180, 0],
+              opacity: [0.05, 0.5, 0.05],
+            }}
             transition={{
               duration: 10,
               ease: "easeInOut",
-              times: [0, 1],
+              times: [0, 0.5, 1],
               repeat: Infinity,
               // 设置 opacity 的过渡效果
               opacity: {
