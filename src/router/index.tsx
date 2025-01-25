@@ -27,6 +27,20 @@ function Router() {
       path: "about",
       Component: lazy(() => import("@/pages/About")),
     },
+    {
+      path: "dashboard",
+      children: [
+        { index: true, element: <Navigate to="/dashboard/app" /> },
+        {
+          path: "app",
+          Component: lazy(() => import("@/pages/Dashboard/App")),
+        },
+        {
+          path: "ecommerce",
+          Component: lazy(() => import("@/pages/Dashboard/Ecommerce")),
+        },
+      ],
+    },
   ];
 
   const asyncRoutes = {
