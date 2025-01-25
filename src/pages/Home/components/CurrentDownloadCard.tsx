@@ -69,19 +69,27 @@ const CurrentDownloadCard = () => {
         <div className="flex items-center justify-center gap-4 p-6">
           <div className="flex gap-[6px] items-center justify-center">
             <span className="w-3 h-3 bg-green-200 rounded-full"></span>
-            <span className="font-bold text-[rgb(28,37,46)]">Mac</span>
+            <span className="font-bold text-[rgb(28,37,46)] dark:text-white">
+              Mac
+            </span>
           </div>
           <div className="flex gap-[6px] items-center justify-center">
             <span className="w-3 h-3 bg-green-400 rounded-full"></span>
-            <span className="font-bold text-[rgb(28,37,46)]">Window</span>
+            <span className="font-bold text-[rgb(28,37,46)] dark:text-white">
+              Window
+            </span>
           </div>
           <div className="flex gap-[6px] items-center justify-center">
             <span className="w-3 h-3 bg-green-600 rounded-full"></span>
-            <span className="font-bold text-[rgb(28,37,46)]">iOS</span>
+            <span className="font-bold text-[rgb(28,37,46)] dark:text-white">
+              iOS
+            </span>
           </div>
           <div className="flex gap-[6px] items-center justify-center">
             <span className="w-3 h-3 bg-green-800 rounded-full"></span>
-            <span className="font-bold text-[rgb(28,37,46)]">Android</span>
+            <span className="font-bold text-[rgb(28,37,46)] dark:text-white">
+              Android
+            </span>
           </div>
         </div>
       </div>

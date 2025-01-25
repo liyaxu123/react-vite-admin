@@ -68,7 +68,7 @@ const TopInstalledCountries = () => {
                     size={14}
                     color="rgb(99, 115, 129)"
                   />
-                  <span className="text-[rgb(28,37,46)]">{item.Android}</span>
+                  <span className="text-[rgb(28,37,46)] dark:text-white">{item.Android}</span>
                 </div>
                 <div className="flex flex-1 gap-1">
                   <Iconify
@@ -76,7 +76,7 @@ const TopInstalledCountries = () => {
                     size={14}
                     color="rgb(99, 115, 129)"
                   />
-                  <span className="text-[rgb(28,37,46)]">{item.Windows}</span>
+                  <span className="text-[rgb(28,37,46)] dark:text-white">{item.Windows}</span>
                 </div>
                 <div className="flex flex-1 gap-1">
                   <Iconify
@@ -84,7 +84,7 @@ const TopInstalledCountries = () => {
                     size={14}
                     color="rgb(99, 115, 129)"
                   />
-                  <span className="text-[rgb(28,37,46)]">{item.Mac}</span>
+                  <span className="text-[rgb(28,37,46)] dark:text-white">{item.Mac}</span>
                 </div>
               </div>
             );

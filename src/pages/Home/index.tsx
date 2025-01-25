@@ -9,6 +9,8 @@ import NewInvoice from "./components/NewInvoice";
 import RelatedApplications from "./components/RelatedApplications";
 import TopAuthors from "./components/TopAuthors";
 import TopInstalledCountries from "./components/TopInstalledCountries";
+import Conversion from "./components/Conversion";
+import Applications from "./components/Applications";
 
 const Home = () => {
   const { token } = theme.useToken();
@@ -110,7 +112,12 @@ const Home = () => {
           <Col span={8}>
             <TopAuthors />
           </Col>
-          <Col span={8}></Col>
+          <Col span={8}>
+            <div className="flex flex-col gap-6">
+              <Conversion />
+              <Applications />
+            </div>
+          </Col>
         </Row>
       </div>
     </PageContainer>

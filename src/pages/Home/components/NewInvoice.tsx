@@ -76,17 +76,36 @@ const NewInvoice = () => {
       key: "status",
       dataIndex: "status",
       render: (_, { status }) => {
-        let color = "rgb(255, 135, 13)";
-        if (status === "Paid") {
-          color = "rgb(34, 197, 94)";
-        }
-        if (status === "Out of date") {
-          color = "#cd201f";
-        }
-        if (status === "Progress") {
-          color = "rgb(255, 135, 13)";
-        }
-        return <Tag color={color}>{status}</Tag>;
+        const co: any = {
+          Paid: {
+            color: "rgb(17, 141, 87)",
+            bg: "rgba(34, 197, 94, 0.16)",
+          },
+          "Out of date": {
+            color: "rgb(183, 29, 24)",
+            bg: "rgba(255, 86, 48, 0.16)",
+          },
+          Progress: {
+            color: "rgb(183, 110, 0)",
+            bg: "rgba(255, 171, 0, 0.16)",
+          },
+        };
+        return (
+          <Tag
+            style={{
+              height: 24,
+              color: co[status].color,
+              backgroundColor: co[status].bg,
+              border: "none",
+              padding: "0 6px",
+              fontWeight: 700,
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            {status}
+          </Tag>
+        );
       },
     },
     {

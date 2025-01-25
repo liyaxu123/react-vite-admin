@@ -47,7 +47,7 @@ const TopAuthors = () => {
                   />
                 </div>
                 <div className="flex-1">
-                  <div className="text-[rgb(28,37,46)] font-semibold">
+                  <div className="text-[rgb(28,37,46)] dark:text-white font-semibold">
                     {item.name}
                   </div>
                   <div className="flex gap-1 mt-1 text-xs">

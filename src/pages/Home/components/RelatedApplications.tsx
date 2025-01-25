@@ -95,7 +95,7 @@ const RelatedApplications = () => {
 
                 <div>
                   <div className="flex gap-2 mb-2 h-[22px] items-center">
-                    <h6 className="font-semibold text-[rgb(28,37,46)]">
+                    <h6 className="font-semibold text-[rgb(28,37,46)] dark:text-white">
                       {item.name}
                     </h6>
                     <span
