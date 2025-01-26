@@ -6,6 +6,10 @@ import {
   TotalCard,
   SaleByGender,
   YearlySales,
+  SalesOverview,
+  CurrentBalance,
+  BestSalesman,
+  LatestProducts,
 } from "./components";
 
 const index = () => {
@@ -88,6 +92,24 @@ const index = () => {
         </Col>
         <Col span={16}>
           <YearlySales />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={16}>
+          <SalesOverview />
+        </Col>
+        <Col span={8}>
+          <CurrentBalance />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={16}>
+          <BestSalesman />
+        </Col>
+        <Col span={8}>
+          <LatestProducts />
         </Col>
       </Row>
     </PageContainer>

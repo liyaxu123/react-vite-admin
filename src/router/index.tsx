@@ -39,6 +39,10 @@ function Router() {
           path: "ecommerce",
           Component: lazy(() => import("@/pages/Dashboard/Ecommerce")),
         },
+        {
+          path: "analytics",
+          Component: lazy(() => import("@/pages/Dashboard/Analytics")),
+        },
       ],
     },
   ];
