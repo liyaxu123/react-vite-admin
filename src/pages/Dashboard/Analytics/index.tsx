@@ -1,6 +1,16 @@
 import PageContainer from "@/components/PageContainer";
 import { Col, Row } from "antd";
-import { DataCard } from "./components";
+import {
+  DataCard,
+  CurrentVisits,
+  WebsiteVisits,
+  ConversionRates,
+  CurrentSubject,
+  News,
+  OrderTimeline,
+  TrafficBySite,
+  Tasks,
+} from "./components";
 
 const index = () => {
   return (
@@ -94,6 +104,42 @@ const index = () => {
               { label: "Aug", value: 9 },
             ]}
           />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={8}>
+          <CurrentVisits />
+        </Col>
+        <Col span={16}>
+          <WebsiteVisits />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={16}>
+          <ConversionRates />
+        </Col>
+        <Col span={8}>
+          <CurrentSubject />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={16}>
+          <News />
+        </Col>
+        <Col span={8}>
+          <OrderTimeline />
+        </Col>
+      </Row>
+
+      <Row gutter={24} className="mt-6">
+        <Col span={8}>
+          <TrafficBySite />
+        </Col>
+        <Col span={16}>
+          <Tasks />
         </Col>
       </Row>
     </PageContainer>

@@ -317,7 +317,7 @@ const SettingButton = () => {
                           settings.themeLayout === ThemeLayout.Vertical
                             ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
                             : "rgb(145, 158, 171)",
-                        mask: `url(src/assets/images/ic-nav-vertical.svg) center center / contain no-repeat`,
+                        mask: `url(/src/assets/images/ic-nav-vertical.svg) center center / contain no-repeat`,
                       }}
                     ></span>
                   </button>
@@ -342,7 +342,7 @@ const SettingButton = () => {
                           settings.themeLayout === ThemeLayout.Horizontal
                             ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
                             : "rgb(145, 158, 171)",
-                        mask: `url(src/assets/images/ic-nav-horizontal.svg) center center / contain no-repeat`,
+                        mask: `url(/src/assets/images/ic-nav-horizontal.svg) center center / contain no-repeat`,
                       }}
                     ></span>
                   </button>
@@ -365,7 +365,7 @@ const SettingButton = () => {
                           settings.themeLayout === ThemeLayout.Mini
                             ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
                             : "rgb(145, 158, 171)",
-                        mask: `url(src/assets/images/ic-nav-mini.svg) center center / contain no-repeat`,
+                        mask: `url(/src/assets/images/ic-nav-mini.svg) center center / contain no-repeat`,
                       }}
                     ></span>
                   </button>
@@ -392,7 +392,7 @@ const SettingButton = () => {
                         background: settings.darkSidebar
                           ? "rgb(145, 158, 171)"
                           : "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))",
-                        mask: `url(src/assets/images/ic-sidebar-outline.svg) center center / contain no-repeat`,
+                        mask: `url(/src/assets/images/ic-sidebar-outline.svg) center center / contain no-repeat`,
                       }}
                     ></div>
                     一体
@@ -417,7 +417,7 @@ const SettingButton = () => {
                         background: settings.darkSidebar
                           ? "linear-gradient(135deg, var(--ant-color-primary-border), var(--ant-color-primary))"
                           : "rgb(145, 158, 171)",
-                        mask: `url(src/assets/images/ic-sidebar-filled.svg) center center / contain no-repeat`,
+                        mask: `url(/src/assets/images/ic-sidebar-filled.svg) center center / contain no-repeat`,
                       }}
                     ></div>
                     突出

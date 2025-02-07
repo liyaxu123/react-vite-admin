@@ -4,7 +4,7 @@ import MotionContainer from "@/components/animate/motion-container";
 
 const Main = () => {
   return (
-    <div className="w-full bg-color-bg-base">
+    <div className="w-full bg-[rgba(249,250,251,0.8)] dark:bg-color-bg-base">
       <MotionContainer>
         <SimpleBar autoHide={false} className="h-full">
           <Outlet />
