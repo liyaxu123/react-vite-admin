@@ -35,11 +35,11 @@ const TrafficBySite = () => {
     <Card>
       <div className="w-full">
         <div className="text-[18px] font-semibold mb-6">按网站划分的流量</div>
-        <div className="h-[328px] grid grid-cols-2 gap-4">
+        <div className="h-[280px] grid grid-cols-2 gap-4">
           {data.map((item) => (
             <div
               key={item.title}
-              className="py-5 border rounded-xl border-color-border-secondary flex flex-col items-center justify-center"
+              className="flex flex-col items-center justify-center py-5 border rounded-xl border-color-border-secondary"
             >
               {item.icon}
               <CountUp

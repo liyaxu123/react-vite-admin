@@ -2,7 +2,6 @@ import Card from "@/components/card";
 import { Table, Tag, Dropdown, Button } from "antd";
 import type { TableProps } from "antd";
 import { RightOutlined } from "@ant-design/icons";
-
 import { Iconify, IconButton } from "@/components/icon";
 
 const data = [
