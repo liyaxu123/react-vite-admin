@@ -41,7 +41,5 @@ export function darkenRGB(
 }
 
 // 使用示例
-const originalRGB = { r: 255, g: 165, b: 0 }; // 橙色
-const darkenedRGB = darkenRGB(originalRGB, 30); // 减少30%的亮度
-
-console.log(darkenedRGB); // 输出: { r: 178, g: 115, b: 0 }
+// const originalRGB = { r: 255, g: 165, b: 0 }; // 橙色
+// const darkenedRGB = darkenRGB(originalRGB, 30); // 减少30%的亮度

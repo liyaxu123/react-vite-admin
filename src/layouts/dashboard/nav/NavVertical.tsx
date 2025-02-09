@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Layout, Menu, Button, theme, ConfigProvider } from "antd";
 import SimpleBar from "simplebar-react";
 import { Iconify } from "@/components/icon";
@@ -9,6 +9,7 @@ import { useSettingActions, useSettings } from "@/store/settingStore";
 import { cn } from "@/utils";
 import { ThemeLayout } from "@/types/enum";
 import useMenuData from "./menuData";
+import { useRouter, usePathname } from "@/router/hooks";
 
 const { Sider } = Layout;
 
@@ -16,8 +17,12 @@ const NavVertical = () => {
   const settings = useSettings();
   const { setSettings } = useSettingActions();
   const { token } = theme.useToken();
-  // console.log("token:", token);
   const items = useMenuData();
+  const router = useRouter();
+  const pathname = usePathname();
+  const defaultOpenKey = useMemo(() => {
+    return "/" + pathname.split("/")[1];
+  }, [pathname]);
 
   return (
     <Sider
@@ -87,17 +92,22 @@ const NavVertical = () => {
               Menu: {
                 itemBg: "var(--ant-color-bg-base)",
                 subMenuItemBg: "transparent",
-                darkSubMenuItemBg: "var(--ant-menu-dark-sub-menu-item-bg)"
+                darkSubMenuItemBg: "var(--ant-menu-dark-sub-menu-item-bg)",
               },
             },
           }}
         >
           <Menu
             theme={settings.darkSidebar ? "dark" : "light"}
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={[pathname]}
+            defaultOpenKeys={[defaultOpenKey]}
+            selectedKeys={[pathname]}
             mode="inline"
             items={items}
             style={{ borderInlineEnd: "none" }}
+            onSelect={(data) => {
+              router.push(data.key);
+            }}
           />
         </ConfigProvider>
       </SimpleBar>

@@ -1,9 +1,6 @@
 import { Iconify } from "@/components/icon";
-import { useRouter } from "@/router/hooks";
 
 const useMenuData = () => {
-  const router = useRouter();
-
   return [
     {
       key: "/dashboard",
@@ -19,51 +16,30 @@ const useMenuData = () => {
         {
           key: "/dashboard/app",
           label: "应用程序",
-          onClick: () => {
-            router.push("/dashboard/app");
-          },
         },
         {
           key: "/dashboard/ecommerce",
           label: "电子商务",
-          onClick: () => {
-            router.push("/dashboard/ecommerce");
-          },
         },
         {
           key: "/dashboard/analytics",
           label: "分析页",
-          onClick: () => {
-            router.push("/dashboard/analytics");
-          },
         },
         {
           key: "/dashboard/banking",
           label: "财务流水",
-          onClick: () => {
-            router.push("/dashboard/banking");
-          },
         },
         {
           key: "/dashboard/booking",
           label: "预定分析",
-          onClick: () => {
-            router.push("/dashboard/booking");
-          },
         },
         {
           key: "/dashboard/file",
           label: "文件概览",
-          onClick: () => {
-            router.push("/dashboard/file");
-          },
         },
         {
           key: "/dashboard/course",
           label: "课程",
-          onClick: () => {
-            router.push("/dashboard/course");
-          },
         },
       ],
     },
