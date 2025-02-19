@@ -43,6 +43,10 @@ function Router() {
           path: "analytics",
           Component: lazy(() => import("@/pages/Dashboard/Analytics")),
         },
+        {
+          path: "banking",
+          Component: lazy(() => import("@/pages/Dashboard/Banking")),
+        },
       ],
     },
   ];
