@@ -1,11 +1,18 @@
+import { useState } from "react";
 import Card from "@/components/card";
 import CountUp from "react-countup";
 import { Button } from "antd";
 import { Iconify } from "@/components/icon";
 import { PlusOutlined } from "@ant-design/icons";
-import { Segmented, Avatar } from "antd";
+import { motion } from "motion/react";
+import { cn } from "@/utils";
+import { Avatar } from "antd";
+import { FallOutlined, RiseOutlined } from "@ant-design/icons";
 
 const TotalBalance = () => {
+  const [isOn, setIsOn] = useState(false);
+  const toggleSwitch = () => setIsOn(!isOn);
+
   return (
     <Card>
       <div className="w-full">
@@ -53,35 +60,85 @@ const TotalBalance = () => {
           </div>
         </div>
 
-        <Segmented
-          className="w-full p-2 mt-4 rounded-2xl"
-          block
-          options={[
-            {
-              label: (
-                <div className="p-6">
-                  <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-                  <div>User 1</div>
+        <div className="p-2 w-full h-[130px] bg-[rgb(244,246,248)] my-6 rounded-2xl relative">
+          {/* 滑块 */}
+          <div
+            className={cn(
+              "absolute top-0 left-0 w-full h-full p-2 flex items-center",
+              isOn ? "justify-end" : "justify-start"
+            )}
+          >
+            <motion.div
+              layout
+              transition={{
+                type: "spring",
+                visualDuration: 0.2,
+                bounce: 0.2,
+              }}
+              className="w-1/2 h-full bg-white rounded-2xl"
+            ></motion.div>
+          </div>
+
+          <div
+            className="w-full h-full flex items-center justify-between absolute top-0 left-0 cursor-pointer p-2"
+            onClick={toggleSwitch}
+          >
+            <div className="flex-1 h-full p-4 relative">
+              <div className="h-full flex items-center gap-5">
+                <Avatar
+                  size={48}
+                  icon={<FallOutlined />}
+                  style={{ backgroundColor: "rgb(0, 75, 80)" }}
+                />
+                <div className={cn(!isOn ? "" : "text-[rgb(99,115,129)]")}>
+                  <p className="font-semibold mb-2">收入</p>
+                  <CountUp
+                    end={9990}
+                    className="font-bold text-2xl"
+                    prefix="￥"
+                  />
                 </div>
-              ),
-              value: "user1",
-              className: "!rounded-2xl",
-            },
-            {
-              label: (
-                <div className="p-6 rounded-2xl">
-                  <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
-                  <div>User 2</div>
+              </div>
+              <div className="absolute top-2 right-6 flex items-center px-[6px] bg-[rgba(34,197,94,0.16)] rounded-md">
+                <Iconify
+                  icon="solar:double-alt-arrow-up-bold-duotone"
+                  size={16}
+                  color="rgb(17,141,87)"
+                />
+                <span className="font-semibold ml-1 text-[rgb(17,141,87)]">
+                  + 8.1%
+                </span>
+              </div>
+            </div>
+            <div className="flex-1 h-full p-4 relative">
+              <div className="h-full flex items-center gap-5">
+                <Avatar
+                  size={48}
+                  icon={<RiseOutlined />}
+                  style={{ backgroundColor: "rgb(122, 65, 0)" }}
+                />
+                <div className={cn(isOn ? "" : "text-[rgb(99,115,129)]")}>
+                  <p className="font-semibold mb-2">开支</p>
+                  <CountUp
+                    end={1989}
+                    className="font-bold text-2xl"
+                    prefix="￥"
+                  />
                 </div>
-              ),
-              value: "user2",
-              className: "!rounded-2xl",
-            },
-          ]}
-          onChange={(value) => {
-            console.log(value); // string
-          }}
-        />
+              </div>
+              <div className="absolute top-2 right-6 flex items-center px-[6px] bg-[rgba(255,86,48,0.16)] rounded-md">
+                <Iconify
+                  icon="solar:double-alt-arrow-down-bold-duotone"
+                  size={16}
+                  color="rgb(183,29,24)"
+                />
+                <span className="font-semibold ml-1 text-[rgb(183,29,24)]">
+                  - 6.6%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Card>
   );
