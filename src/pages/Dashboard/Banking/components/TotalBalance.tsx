@@ -1,17 +1,64 @@
 import { useState } from "react";
 import Card from "@/components/card";
 import CountUp from "react-countup";
-import { Button } from "antd";
+import { Button, theme } from "antd";
 import { Iconify } from "@/components/icon";
 import { PlusOutlined } from "@ant-design/icons";
 import { motion } from "motion/react";
 import { cn } from "@/utils";
 import { Avatar } from "antd";
 import { FallOutlined, RiseOutlined } from "@ant-design/icons";
+import { Line } from "@ant-design/plots";
+import { useSettings } from "@/store/settingStore";
+import { ThemeMode } from "@/types/enum";
 
 const TotalBalance = () => {
+  const { token } = theme.useToken();
+  const settings = useSettings();
   const [isOn, setIsOn] = useState(false);
   const toggleSwitch = () => setIsOn(!isOn);
+
+  const config = {
+    data: isOn
+      ? [
+          { year: "1991", value: 10 },
+          { year: "1992", value: 15 },
+          { year: "1993", value: 40 },
+          { year: "1994", value: 38 },
+          { year: "1995", value: 50 },
+          { year: "1996", value: 70 },
+          { year: "1997", value: 80 },
+          { year: "1998", value: 85 },
+          { year: "1999", value: 90 },
+        ]
+      : [
+          { year: "1991", value: 10 },
+          { year: "1992", value: 40 },
+          { year: "1993", value: 45 },
+          { year: "1994", value: 88 },
+          { year: "1995", value: 50 },
+          { year: "1996", value: 64 },
+          { year: "1997", value: 70 },
+          { year: "1998", value: 90 },
+          { year: "1999", value: 103 },
+        ],
+    axis: {
+      x: {
+        tick: false,
+      },
+      y: {
+        tick: false,
+      },
+    },
+    xField: "year",
+    yField: "value",
+    shapeField: "smooth",
+    theme: settings.themeMode === ThemeMode.Dark ? "classicDark" : "classic",
+    colorField: isOn ? "#b76e00" : token.colorPrimary,
+    style: {
+      lineWidth: 3,
+    },
+  };
 
   return (
     <Card>
@@ -80,21 +127,21 @@ const TotalBalance = () => {
           </div>
 
           <div
-            className="w-full h-full flex items-center justify-between absolute top-0 left-0 cursor-pointer p-2"
+            className="absolute top-0 left-0 flex items-center justify-between w-full h-full p-2 cursor-pointer"
             onClick={toggleSwitch}
           >
-            <div className="flex-1 h-full p-4 relative">
-              <div className="h-full flex items-center gap-5">
+            <div className="relative flex-1 h-full p-4">
+              <div className="flex items-center h-full gap-5">
                 <Avatar
                   size={48}
                   icon={<FallOutlined />}
-                  style={{ backgroundColor: "rgb(0, 75, 80)" }}
+                  style={{ backgroundColor: token.colorPrimary }}
                 />
                 <div className={cn(!isOn ? "" : "text-[rgb(99,115,129)]")}>
-                  <p className="font-semibold mb-2">收入</p>
+                  <p className="mb-2 font-semibold">收入</p>
                   <CountUp
                     end={9990}
-                    className="font-bold text-2xl"
+                    className="text-2xl font-bold"
                     prefix="￥"
                   />
                 </div>
@@ -110,18 +157,18 @@ const TotalBalance = () => {
                 </span>
               </div>
             </div>
-            <div className="flex-1 h-full p-4 relative">
-              <div className="h-full flex items-center gap-5">
+            <div className="relative flex-1 h-full p-4">
+              <div className="flex items-center h-full gap-5">
                 <Avatar
                   size={48}
                   icon={<RiseOutlined />}
                   style={{ backgroundColor: "rgb(122, 65, 0)" }}
                 />
                 <div className={cn(isOn ? "" : "text-[rgb(99,115,129)]")}>
-                  <p className="font-semibold mb-2">开支</p>
+                  <p className="mb-2 font-semibold">开支</p>
                   <CountUp
                     end={1989}
-                    className="font-bold text-2xl"
+                    className="text-2xl font-bold"
                     prefix="￥"
                   />
                 </div>
@@ -138,6 +185,10 @@ const TotalBalance = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="h-[270px]">
+          <Line {...config} />
         </div>
       </div>
     </Card>
