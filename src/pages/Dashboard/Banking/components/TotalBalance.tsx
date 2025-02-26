@@ -107,7 +107,7 @@ const TotalBalance = () => {
           </div>
         </div>
 
-        <div className="p-2 w-full h-[130px] bg-[rgb(244,246,248)] my-6 rounded-2xl relative">
+        <div className="p-2 w-full h-[130px] bg-[rgb(244,246,248)] dark:bg-color-bg-elevated my-6 rounded-2xl relative">
           {/* 滑块 */}
           <div
             className={cn(
@@ -122,7 +122,7 @@ const TotalBalance = () => {
                 visualDuration: 0.2,
                 bounce: 0.2,
               }}
-              className="w-1/2 h-full bg-white rounded-2xl"
+              className="w-1/2 h-full bg-white dark:bg-color-bg-base rounded-2xl"
             ></motion.div>
           </div>
 
